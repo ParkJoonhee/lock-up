@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="15dp"
+        android:text="Lock Up"
+        android:textSize="70dp">
+    </TextView>
+
+    <EditText
+        android:id="@+id/joinID1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:ems="20"
+        android:inputType="text"
+        android:hint="ID"
+        android:textSize="20dp">
+    </EditText>
+
+    <EditText
+        android:id="@+id/joinPw1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:hint="PASSWORD"
+        android:ems="20"
+        android:inputType="textPassword"
+        android:textSize="20dp">
+    </EditText>
+
+    <ProgressBar
+        android:id="@+id/login_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone">
+    </ProgressBar>
+
+
+    <Button
+        android:id="@+id/login1"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="Login"
+        android:textSize="20dp">
+    </Button>
+
+    <Button
+        android:id="@+id/join"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:text="Join"
+        android:textSize="17dp">
+    </Button>
+
+</LinearLayout>

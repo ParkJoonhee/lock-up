@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/mypage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="개인정보 수정"
+                android:textSize="30dp">
+            </Button>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ToggleButton
+                android:id="@+id/nfc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:texton="NFC ON"
+                android:textoff="NFC OFF"
+                android:textSize="30dp">
+            </ToggleButton>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+
+        <Button
+            android:id="@+id/main1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="메인"
+            android:textSize="30dp">
+        </Button>
+
+        <Button
+            android:id="@+id/Pw1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="비번"
+            android:textSize="30dp">
+        </Button>
+
+        <Button
+            android:id="@+id/Code1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="코드"
+            android:textSize="30dp">
+        </Button>
+
+        <Button
+            android:id="@+id/Setting1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="설정"
+            android:textSize="30dp">
+        </Button>
+
+    </LinearLayout>
+
+</LinearLayout>
