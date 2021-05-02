@@ -10,29 +10,29 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:gravity="center"
-        android:padding="30dp"
         android:layout_weight="6">
 
-        <TextView
-            android:id="@+id/pwd"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_margin="20dp"
-            android:text="비밀번호"
-            android:textSize="50dp">
-        </TextView>
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/timer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_margin="100dp"
-            android:text="시간"
-            android:textSize="40dp">
-        </TextView>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00fF0000"
+                android:text="게스트 정보"
+                android:textSize="30dp">
+            </Button>
 
+            <ListView
+                android:id="@+id/guestlist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </ListView>
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

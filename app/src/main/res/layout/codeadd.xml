@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="7">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <RadioButton
+                    android:id="@+id/Single"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:text="1회용"
+                    android:textSize="30dp"
+                    android:checked="true">
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/Multi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:text="장기간"
+                    android:textSize="30dp">
+                </RadioButton>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="9">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/SingleD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Name"
+                        android:textSize="23dp">
+                    </TextView>
+
+                    <EditText
+                        android:id="@+id/GaestName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:ems="15"
+                        android:inputType="text"
+                        android:textSize="20dp">
+                    </EditText>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Other"
+                        android:textSize="23dp">
+                    </TextView>
+
+                    <EditText
+                        android:id="@+id/GaestOther"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:ems="15"
+                        android:inputType="text"
+                        android:textSize="20dp">
+                    </EditText>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/MultiD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Name"
+                        android:textSize="23dp">
+                    </TextView>
+
+                    <EditText
+                        android:id="@id/GaestName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:ems="15"
+                        android:inputType="text"
+                        android:textSize="20dp">
+                    </EditText>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Date"
+                        android:textSize="23dp">
+                    </TextView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <CalendarView
+                            android:id="@+id/Cal1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                        </CalendarView>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Other"
+                        android:textSize="23dp">
+                    </TextView>
+
+                    <EditText
+                        android:id="@id/GaestOther"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:ems="15"
+                        android:inputType="text"
+                        android:textSize="20dp">
+                    </EditText>
+
+                </LinearLayout>
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/CodeOk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="생성"
+                android:textSize="30dp">
+            </Button>
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/code_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone">
+        </ProgressBar>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/main1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="메인"
+            android:textSize="30dp">
+        </Button>
+
+        <Button
+            android:id="@+id/notice"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="공지"
+            android:textSize="30dp">
+        </Button>
+
+        <Button
+            android:id="@+id/Pw1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="비번"
+            android:textSize="30dp">
+        </Button>
+
+        <Button
+            android:id="@+id/Code1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="코드"
+            android:textSize="30dp">
+        </Button>
+
+        <Button
+            android:id="@+id/Setting1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="설정"
+            android:textSize="30dp">
+        </Button>
+
+    </LinearLayout>
+
+</LinearLayout>

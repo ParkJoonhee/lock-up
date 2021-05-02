@@ -31,7 +31,8 @@ import retrofit2.Response;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private Button lock, main, pw, code, setting;
+    private Button lock, main, notice, pw, code, setting;
+    int checkhg;
     private String ntitle, ndate;
     private TextView Notitle, Nodate;
     private ListView Noticelist;
@@ -50,43 +51,68 @@ public class MenuActivity extends AppCompatActivity {
         Notitle = (TextView) findViewById(R.id.ntitle);
         Nodate = (TextView) findViewById(R.id.ndate);
         Noticelist = (ListView) findViewById(R.id.Noticelist);
-        main= (Button) findViewById(R.id.main1);
+        main = (Button) findViewById(R.id.main1);
+        notice =(Button) findViewById(R.id.notice);
         pw = (Button) findViewById(R.id.Pw1);
         code = (Button) findViewById(R.id.Code1);
         setting = (Button) findViewById(R.id.Setting1);
 
+        checkhg = 0;
+/*
         final MyAdapter myAdapter = new MyAdapter(this,noticeDatalist);
         Noticelist.setAdapter(myAdapter);
 
 
         noticestart(new NoticelistData(ntitle,ndate));
-
+*/
         lock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
             }
         });
-
+/*
         Noticelist.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id){
                 Toast.makeText(getApplicationContext(), myAdapter.getItem(position).getNtitle(), Toast.LENGTH_LONG).show();
             }
         });
-
+*/
 
         main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.MenuActivity.class);
+                Intent intent = null;
+                if(checkhg == 0) {
+                    intent = new Intent(getApplicationContext(), com.example.myapplication.HMenuActivity.class);
+                } else if(checkhg == 1){
+                    intent = new Intent(getApplicationContext(), com.example.myapplication.MenuActivity.class);
+                }
                 startActivity(intent);
+                finish();
             }
         });
+
+        notice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = null;
+                if(checkhg == 0) {
+                    intent = new Intent(getApplicationContext(), com.example.myapplication.HNoticeActivity.class);
+                } else if(checkhg == 1){
+                    intent = new Intent(getApplicationContext(), com.example.myapplication.GNoticeActivity.class);
+                }
+                startActivity(intent);
+                finish();
+            }
+        });
+
         pw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.PwActivity.class);
+                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.PasswordActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         code.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +120,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), com.example.myapplication.CodeActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         setting.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +128,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), com.example.myapplication.SettingActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

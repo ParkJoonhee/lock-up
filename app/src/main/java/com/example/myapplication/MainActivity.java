@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private Button join;
     private ProgressBar mProgressView;
     private ServiceApi service;
+    int checkhg = 0;
 
     public static String email;
 
@@ -49,7 +50,15 @@ public class MainActivity extends AppCompatActivity {
         login1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                //attemptLogin();
+                Intent intent = null;
+                if(checkhg == 0) {
+                    intent = new Intent(getApplicationContext(), com.example.myapplication.HMenuActivity.class);
+                } else if(checkhg == 1){
+                    intent = new Intent(getApplicationContext(), com.example.myapplication.MenuActivity.class);
+                }
+                    startActivity(intent);
+                finish();
             }
         });
         join.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
+    }/*
     private void attemptLogin() {
         joinID1.setError(null);
         joinPw1.setError(null);
@@ -116,5 +125,5 @@ public class MainActivity extends AppCompatActivity {
     }
     private void showProgress(boolean show) {
         mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-    }
+    }*/
 }

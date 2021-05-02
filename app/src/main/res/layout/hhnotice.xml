@@ -10,28 +10,72 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:gravity="center"
-        android:padding="30dp"
         android:layout_weight="6">
 
-        <TextView
-            android:id="@+id/pwd"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_margin="20dp"
-            android:text="비밀번호"
-            android:textSize="50dp">
-        </TextView>
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/timer"
+            <Button
+                android:id="@+id/hbtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="호스트"
+                android:textSize="30dp">
+            </Button>
+
+            <Button
+                android:id="@+id/gbtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="게스트"
+                android:textSize="30dp">
+            </Button>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_margin="100dp"
-            android:text="시간"
-            android:textSize="40dp">
-        </TextView>
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="9">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="호스트 공지사항"
+                    android:textSize="30dp">
+                </TextView>
+
+                <Button
+                    android:id="@+id/addbtn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="글작성"
+                    android:textSize="20dp">
+                </Button>
+
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/Noticelist"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="9">
+            </ListView>
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -87,5 +131,6 @@
         </Button>
 
     </LinearLayout>
+
 
 </LinearLayout>

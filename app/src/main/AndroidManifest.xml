@@ -10,10 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication"
+        android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <meta-data
-            android:name="com.google.android.actions"/>
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -23,7 +21,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".JoinActivity" />
+        <activity android:name=".HMenuActivity" />
         <activity android:name=".MenuActivity" />
+        <activity android:name=".HNoticeActivity" />
+        <activity android:name=".HgNoticeActivity" />
+        <activity android:name=".GNoticeActivity" />
+        <activity android:name=".GgNoticeActivity" />
+        <activity android:name=".NoticeaddActivity" />
+        <activity android:name=".PasswordActivity" />
         <activity android:name=".PwActivity" />
         <activity android:name=".CodeActivity" />
         <activity android:name=".SettingActivity" />

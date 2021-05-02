@@ -12,22 +12,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
-public class PwActivity extends AppCompatActivity {
+public class PasswordActivity extends AppCompatActivity {
 
-    private TextView pwd, timer;
-    private Button main, notice, pw, code, setting;
-    int num,checkhg;
-
-    private Random rnd = new Random();
-
+    private Button paw, pattern, main, notice, pw, code, setting;
+    int checkhg;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pw);
+        setContentView(R.layout.password);
 
-        pwd = (TextView) findViewById(R.id.pwd);
-        timer = (TextView) findViewById(R.id.timer);
+        paw =(Button) findViewById(R.id.Pw);
+        pattern =(Button) findViewById(R.id.Pattern);
+
         main = (Button) findViewById(R.id.main1);
         notice =(Button) findViewById(R.id.notice);
         pw = (Button) findViewById(R.id.Pw1);
@@ -35,11 +32,24 @@ public class PwActivity extends AppCompatActivity {
         setting = (Button) findViewById(R.id.Setting1);
 
         checkhg = 0;
-        num = 0;
 
-        Randomnumber();
+        paw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.PwActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        countDown();
+        pattern.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*
+                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.PwActivity.class);
+                startActivity(intent);
+                 */
+            }
+        });
 
         main.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +87,7 @@ public class PwActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,31 +105,5 @@ public class PwActivity extends AppCompatActivity {
             }
         });
     }
-    public void Randomnumber() {
 
-        do {
-            num = rnd.nextInt(999999);
-        } while (num < 100000);
-
-        pwd.setText(Integer.toString(num));
-
-        countDown();
-    }
-
-
-    public void countDown() {
-        new CountDownTimer(5000, 1000) {
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-                timer.setText(Integer.toString((int) (millisUntilFinished / 1000)));
-            }
-
-            @Override
-            public void onFinish() {
-                Randomnumber();
-            }
-
-        }.start();
-    }
 }

@@ -2,32 +2,25 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Random;
+public class HgNoticeActivity extends AppCompatActivity {
 
-public class PwActivity extends AppCompatActivity {
-
-    private TextView pwd, timer;
-    private Button main, notice, pw, code, setting;
-    int num,checkhg;
-
-    private Random rnd = new Random();
-
+    private Button hbtn, gbtn, main, notice, pw, code, setting;
+    int checkhg;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pw);
+        setContentView(R.layout.hgnotice);
 
-        pwd = (TextView) findViewById(R.id.pwd);
-        timer = (TextView) findViewById(R.id.timer);
+        hbtn = (Button) findViewById(R.id.hbtn);
+        gbtn = (Button) findViewById(R.id.gbtn);
+
         main = (Button) findViewById(R.id.main1);
         notice =(Button) findViewById(R.id.notice);
         pw = (Button) findViewById(R.id.Pw1);
@@ -35,11 +28,25 @@ public class PwActivity extends AppCompatActivity {
         setting = (Button) findViewById(R.id.Setting1);
 
         checkhg = 0;
-        num = 0;
 
-        Randomnumber();
+        hbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.HNoticeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
-        countDown();
+        gbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.HgNoticeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
         main.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,9 +67,9 @@ public class PwActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = null;
                 if(checkhg == 0) {
-                    intent = new Intent(getApplicationContext(), com.example.myapplication.HNoticeActivity.class);
+                    intent = new Intent(getApplicationContext(), HgNoticeActivity.class);
                 } else if(checkhg == 1){
-                    intent = new Intent(getApplicationContext(), com.example.myapplication.GNoticeActivity.class);
+                    intent = new Intent(getApplicationContext(), GNoticeActivity.class);
                 }
                 startActivity(intent);
                 finish();
@@ -72,7 +79,7 @@ public class PwActivity extends AppCompatActivity {
         pw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.PasswordActivity.class);
+                Intent intent = new Intent(getApplicationContext(), PasswordActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -80,7 +87,7 @@ public class PwActivity extends AppCompatActivity {
         code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.CodeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CodeActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -88,37 +95,11 @@ public class PwActivity extends AppCompatActivity {
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.SettingActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
     }
-    public void Randomnumber() {
 
-        do {
-            num = rnd.nextInt(999999);
-        } while (num < 100000);
-
-        pwd.setText(Integer.toString(num));
-
-        countDown();
-    }
-
-
-    public void countDown() {
-        new CountDownTimer(5000, 1000) {
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-                timer.setText(Integer.toString((int) (millisUntilFinished / 1000)));
-            }
-
-            @Override
-            public void onFinish() {
-                Randomnumber();
-            }
-
-        }.start();
-    }
 }
