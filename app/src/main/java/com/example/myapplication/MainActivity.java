@@ -68,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }/*
+    }
+
     private void attemptLogin() {
         joinID1.setError(null);
         joinPw1.setError(null);
@@ -125,5 +126,5 @@ public class MainActivity extends AppCompatActivity {
     }
     private void showProgress(boolean show) {
         mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-    }*/
+    }
 }

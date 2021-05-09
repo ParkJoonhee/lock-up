@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class JoinData2 {
 
-    @SerializedName("email")
-    private String email;
+    @SerializedName("id")
+    private String id;
 
-    public JoinData2(String email) {
-        this.email = email;
+    public JoinData2(String id) {
+        this.id = id;
     }
 }

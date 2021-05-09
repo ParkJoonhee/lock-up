@@ -1,5 +1,9 @@
 package com.example.myapplication.Network;
 
+import com.example.myapplication.data.CodeData;
+import com.example.myapplication.data.CodeImport;
+import com.example.myapplication.data.CodeImportData;
+import com.example.myapplication.data.CodeResponse;
 import com.example.myapplication.data.JoinData;
 import com.example.myapplication.data.JoinData2;
 import com.example.myapplication.data.JoinResponse;
@@ -18,16 +22,19 @@ public interface ServiceApi {
     @POST("/user/login")
     Call<LoginResponse> userLogin(@Body LoginData data);
 
-    @POST("/user/join")
+    @POST("/setUserData")
     Call<JoinResponse> userJoin(@Body JoinData data);
 
-    @POST("/user/join2")
+    @POST("/double_check")
     Call<JoinResponse2> userJoin2(@Body JoinData2 data);
 
     @POST("/user/menu")
     Call<NoticelistImport> userNotice(@Body NoticelistData data);
-/*
-    @POST("/user/menu2")
-    Call<MenuImport> userMenu2(@Body MenuImData data);
-*/
+
+    @POST("/user/code")
+    Call<CodeResponse> userCode(@Body CodeData data);
+
+    @POST("/user/code2")
+    Call<CodeImport> userCode2(@Body CodeImportData data);
+
 }

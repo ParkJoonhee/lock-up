@@ -10,13 +10,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CodeActivity extends AppCompatActivity {
 
-    private Button main, notice, pw, code, setting;
+    private Button main, notice, pw, code, setting, codeadd;
     int checkhg;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.code);
+
+        codeadd = (Button) findViewById(R.id.codeadd);
 
         main = (Button) findViewById(R.id.main1);
         notice =(Button) findViewById(R.id.notice);
@@ -26,7 +28,13 @@ public class CodeActivity extends AppCompatActivity {
 
         checkhg = 0;
 
-
+        codeadd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.CodeaddActivity.class);
+                startActivity(intent);
+            }
+        });
 
         main.setOnClickListener(new View.OnClickListener() {
             @Override

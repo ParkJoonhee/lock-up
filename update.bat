@@ -1,3 +1,3 @@
 git add --all
-git commit -m "update xml"
+git commit -m "9week / Add CodeaddActivity"
 git push -u origin master

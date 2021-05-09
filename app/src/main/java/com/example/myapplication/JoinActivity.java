@@ -28,13 +28,12 @@ import retrofit2.Response;
 public class JoinActivity extends AppCompatActivity {
 
     private RadioButton radioArray[] = new RadioButton[2];
-    private int use =0;
+    private int live_code =0;
 
     private EditText joinName;
     private EditText joinID2;
     private EditText joinPw2;
     private EditText joinPw3;
-    private EditText joinNick;
     private Button idcheck, joinOk;
 
     private ProgressBar mProgressView;
@@ -55,7 +54,6 @@ public class JoinActivity extends AppCompatActivity {
         joinID2 = (EditText) findViewById(R.id.joinID2);
         joinPw2 = (EditText) findViewById(R.id.joinPw2);
         joinPw3 = (EditText) findViewById(R.id.joinPw3);
-        joinNick = (EditText) findViewById(R.id.joinNick);
         idcheck = (Button) findViewById(R.id.idcheck);
         joinOk = (Button) findViewById(R.id.joinOk);
         mProgressView = (ProgressBar) findViewById(R.id.join_progress);
@@ -67,7 +65,7 @@ public class JoinActivity extends AppCompatActivity {
             index = i;
             radioArray[index].setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    use = index;
+                    live_code = index;
                 }
             });
         }
@@ -88,13 +86,13 @@ public class JoinActivity extends AppCompatActivity {
     }
     private void attemptJoin2() {
         joinID2.setError(null);
-        String email = joinID2.getText().toString();
+        String id = joinID2.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
         // ID의 유효성 검사
-        if (email.isEmpty()) {
+        if (id.isEmpty()) {
             joinID2.setError("ID을 입력해주세요.");
             focusView = joinID2;
             cancel = true;
@@ -103,7 +101,7 @@ public class JoinActivity extends AppCompatActivity {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            startJoin2(new JoinData2(email));
+            startJoin2(new JoinData2(id));
             showProgress(true);
         }
 
@@ -125,8 +123,8 @@ public class JoinActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<JoinResponse2> call, Throwable t) {
-                Toast.makeText(com.example.myapplication.JoinActivity.this, "회원가입 에러 발생", Toast.LENGTH_SHORT).show();
-                Log.e("회원가입 에러 발생", t.getMessage());
+                Toast.makeText(com.example.myapplication.JoinActivity.this, "회원가입 에러 발생(ID)", Toast.LENGTH_SHORT).show();
+                Log.e("회원가입 에러 발생(ID)", t.getMessage());
                 showProgress(false);
             }
         });
@@ -138,10 +136,8 @@ public class JoinActivity extends AppCompatActivity {
         joinPw2.setError(null);
         joinPw3.setError(null);
         joinName.setError(null);
-        joinNick.setError(null);
 
-        String nickname = joinNick.getText().toString();
-        String email = joinID2.getText().toString();
+        String id = joinID2.getText().toString();
         String password = joinPw2.getText().toString();
         String password2 = joinPw3.getText().toString();
         String name = joinName.getText().toString();
@@ -172,23 +168,16 @@ public class JoinActivity extends AppCompatActivity {
         }
 
         // ID의 유효성 검사
-        if (email.isEmpty()) {
+        if (id.isEmpty()) {
             joinID2.setError("ID을 입력해주세요.");
             focusView = joinID2;
-            cancel = true;
-        }
-
-        // 닉네임의 유효성 검사
-        if (nickname.isEmpty()) {
-            joinNick.setError("닉네임을 입력해주세요.");
-            focusView = joinNick;
             cancel = true;
         }
 
         // 이름의 유효성 검사
         if (name.isEmpty()) {
             joinName.setError("이름을 입력해주세요.");
-            focusView = joinNick;
+            focusView = joinName;
             cancel = true;
         }
 
@@ -199,7 +188,7 @@ public class JoinActivity extends AppCompatActivity {
             focusView = joinID2;
         }
         else {
-            startJoin(new JoinData(use, email, password, name, nickname));
+            startJoin(new JoinData(live_code, id, password, name));
             showProgress(true);
         }
     }

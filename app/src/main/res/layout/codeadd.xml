@@ -58,7 +58,6 @@
                 android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:id="@+id/SingleD"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -95,30 +94,6 @@
                         android:textSize="20dp">
                     </EditText>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/MultiD"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Name"
-                        android:textSize="23dp">
-                    </TextView>
-
-                    <EditText
-                        android:id="@id/GaestName"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:ems="15"
-                        android:inputType="text"
-                        android:textSize="20dp">
-                    </EditText>
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -132,31 +107,18 @@
                         android:orientation="vertical"
                         android:gravity="center">
 
-                        <CalendarView
-                            android:id="@+id/Cal1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                        </CalendarView>
+                        <DatePicker
+                            android:id="@+id/Datepicker"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:calendarViewShown="false"
+                            android:datePickerMode="spinner">
+                        </DatePicker>
 
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Other"
-                        android:textSize="23dp">
-                    </TextView>
-
-                    <EditText
-                        android:id="@id/GaestOther"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:ems="15"
-                        android:inputType="text"
-                        android:textSize="20dp">
-                    </EditText>
-
                 </LinearLayout>
+
             </FrameLayout>
 
         </LinearLayout>

@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     // Base URL에 자신의 서버 주소로 수정할 것
-    private final static String BASE_URL = "http://192.168.25.17:52225";
+    private final static String BASE_URL = "http://lockup.kro.kr:3000/";
     private static Retrofit retrofit = null;
     private RetrofitClient() {
     }
