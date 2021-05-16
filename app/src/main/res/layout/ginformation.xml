@@ -10,38 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:gravity="center"
-                android:text="Resident"
-                android:textSize="40dp">
-            </TextView>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text=":"
-                android:textSize="40dp">
-            </TextView>
-
-            <TextView
-                android:id="@+id/joinName"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:text="이름"
-                android:textSize="40dp">
-            </TextView>
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,7 +67,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/GuestName"
+                android:id="@+id/GaestName"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
@@ -169,10 +137,10 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/GuestOther"
+                android:id="@+id/GaestOther"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="사유"
+                android:text="특이사항"
                 android:textSize="40dp">
             </TextView>
 
@@ -189,22 +157,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="40dp">
-        </TextView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Password"
-            android:textSize="40dp">
-        </TextView>
-        <TextView
-            android:id="@+id/pwd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_margin="20dp"
-            android:text="비밀번호"
-            android:textSize="50dp">
         </TextView>
 
     </LinearLayout>

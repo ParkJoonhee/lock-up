@@ -30,7 +30,7 @@ import retrofit2.Response;
 public class CodeaddActivity extends AppCompatActivity {
 
     final static MainActivity Main = new MainActivity();
-    private static String email = Main.email;
+    private static String id = Main.id;
 
     private Button main, notice, pw, code, setting, CodeOk;
     int checkhg, cYear, cMonth, cDay;
@@ -226,7 +226,7 @@ public class CodeaddActivity extends AppCompatActivity {
             focusView.requestFocus();
 
         } else {
-            startEdit(new CodeData(email, count, Date, GuestName1, GuestOther1));
+            startEdit(new CodeData(id, count, Date, GuestName1, GuestOther1));
             CodeOk.setVisibility(View.INVISIBLE);
             showProgress(true);
         }

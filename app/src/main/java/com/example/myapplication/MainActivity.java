@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ServiceApi service;
     int checkhg = 0;
 
-    public static String email;
+    public static String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     private void attemptLogin() {
         joinID1.setError(null);
         joinPw1.setError(null);
-        email = joinID1.getText().toString();
+        id = joinID1.getText().toString();
         String password = joinPw1.getText().toString();
         boolean cancel = false;
         View focusView = null;
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             cancel = true;
         }
         // 이메일의 유효성 검사
-        if (email.isEmpty()) {
+        if (id.isEmpty()) {
             joinID1.setError("아이디를 입력해주세요.");
             focusView = joinID1;
             cancel = true;
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            startLogin(new LoginData(email, password));
+            startLogin(new LoginData(id, password));
             showProgress(true);
         }
     }

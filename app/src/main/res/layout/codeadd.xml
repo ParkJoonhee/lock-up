@@ -70,7 +70,7 @@
                     </TextView>
 
                     <EditText
-                        android:id="@+id/GaestName"
+                        android:id="@+id/GuestName"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:ems="15"
@@ -86,7 +86,7 @@
                     </TextView>
 
                     <EditText
-                        android:id="@+id/GaestOther"
+                        android:id="@+id/GuestOther"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:ems="15"

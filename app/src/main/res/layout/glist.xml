@@ -6,7 +6,7 @@
 
 
     <LinearLayout
-        android:id="@+id/Notice"
+        android:id="@+id/ginformation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -26,15 +26,6 @@
             android:gravity="center"
             android:textSize="30dp"
             android:text="NAME">
-        </TextView>
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="right"
-            android:text="작성자"
-            android:textSize="25dp">
         </TextView>
 
 
