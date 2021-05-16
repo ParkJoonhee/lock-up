@@ -99,7 +99,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/GaestName"
+                android:id="@+id/GuestName"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
@@ -169,7 +169,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/GaestOther"
+                android:id="@+id/GuestOther"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="사유"
@@ -210,7 +210,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/CodeOk"
+        android:id="@+id/Codecheck"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"

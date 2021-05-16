@@ -12,22 +12,22 @@ public class CodeImport {
     @SerializedName("message")
     private String message;
 
-    @SerializedName("email")
-    private String email;
+    @SerializedName("id")
+    private String id;
 
-    @SerializedName("GaestName")
-    private String GaestName;
+    @SerializedName("GuestName")
+    private String GuestName;
 
-    @SerializedName("GaestOther")
-    private String GaestOther;
+    @SerializedName("GuestOther")
+    private String GuestOther;
 
     @SerializedName("Date")
     private String Date;
 
-    @SerializedName("count")
-    private String count;
+    @SerializedName("r_number")
+    private String r_number;
 
-    public CodeImport(String email, String count, String date, EditText gaestName, EditText gaestOther) {
+    public CodeImport(String id, String count, String date, EditText guestName, EditText guestOther) {
     }
 
     public int getCode() {
@@ -38,22 +38,23 @@ public class CodeImport {
         return message;
     }
 
-    public String getEmail() {
-        return email;
-    }
-    public String getGaestName() {
-        return GaestName;
+    public String getId() {
+        return id;
     }
 
-    public String getGaestOther() {
-        return GaestOther;
+    public String getGuestName() {
+        return GuestName;
+    }
+
+    public String getGuestOther() {
+        return GuestOther;
     }
 
     public String getDate() {
         return Date;
     }
 
-    public String getCount() {
-        return count;
+    public String getr_number() {
+        return r_number;
     }
 }

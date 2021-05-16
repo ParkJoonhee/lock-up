@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class JoinData {
 
-    @SerializedName("live_code")
-    private int live_code;
+    @SerializedName("admin")
+    private int admin;
 
     @SerializedName("id")
     private String id;
@@ -17,8 +17,8 @@ public class JoinData {
     private String name;
 
 
-    public JoinData(int live_code, String id, String password, String name) {
-        this.live_code = live_code;
+    public JoinData(int admin, String id, String password, String name) {
+        this.admin = admin;
         this.id = id;
         this.password = password;
         this.name = name;

@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -28,18 +29,23 @@ import retrofit2.Response;
 public class JoinActivity extends AppCompatActivity {
 
     private RadioButton radioArray[] = new RadioButton[2];
-    private int live_code =0;
+    private int admin = 0;
 
     private EditText joinName;
     private EditText joinID2;
     private EditText joinPw2;
     private EditText joinPw3;
+    private TextView idchecktext;
     private Button idcheck, joinOk;
 
     private ProgressBar mProgressView;
     private ServiceApi service;
 
-    boolean cheak = false;
+    private String checkid = " ";
+    private String checkid2 = " ";
+    private String id;
+    boolean check = false;
+    private int i;
 
 
     @Override
@@ -54,22 +60,36 @@ public class JoinActivity extends AppCompatActivity {
         joinID2 = (EditText) findViewById(R.id.joinID2);
         joinPw2 = (EditText) findViewById(R.id.joinPw2);
         joinPw3 = (EditText) findViewById(R.id.joinPw3);
+        idchecktext = (TextView) findViewById(R.id.idchecktext);
         idcheck = (Button) findViewById(R.id.idcheck);
         joinOk = (Button) findViewById(R.id.joinOk);
         mProgressView = (ProgressBar) findViewById(R.id.join_progress);
 
         service = RetrofitClient.getClient().create(ServiceApi.class);
 
-        for (int i = 0; i < radioArray.length; i++) {
-            final int index;
-            index = i;
-            radioArray[index].setOnClickListener(new View.OnClickListener() {
+        for (i = 0; i < radioArray.length; i++) {
+            radioArray[i].setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    live_code = index;
+                    admin = i;
                 }
             });
         }
 
+        joinID2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                checkid2 = joinID2.getText().toString();
+                if(checkid2.equals("")) {
+                    checkid = " ";
+                    idchecktext.setText("");
+                    check = false;
+                } else if(!checkid2.equals(checkid)) {
+                    checkid = " ";
+                    idchecktext.setText("중복확인을 해주십시오.");
+                    check = false;
+                }
+            }
+        });
         idcheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,7 +106,8 @@ public class JoinActivity extends AppCompatActivity {
     }
     private void attemptJoin2() {
         joinID2.setError(null);
-        String id = joinID2.getText().toString();
+        id = joinID2.getText().toString();
+        checkid = id;
 
         boolean cancel = false;
         View focusView = null;
@@ -113,9 +134,12 @@ public class JoinActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<JoinResponse2> call, Response<JoinResponse2> response) {
                 JoinResponse2 result = response.body();
-                if(result.getCode()==200){
-                    cheak = true;
-                } else if(result.getCode()==204) {
+                if(result.getCode()==200) {
+                    check = true;
+                    joinID2.setError(null);
+                    focusView = joinID2;
+                    idchecktext.setText(result.getMessage());
+                } else if(result.getCode()==201) {
                     joinID2.setError(result.getMessage());
                     focusView = joinID2;
                 }
@@ -183,12 +207,12 @@ public class JoinActivity extends AppCompatActivity {
 
         if (cancel) {
             focusView.requestFocus();
-        } else if (!cheak) {
+        } else if (!check) {
             joinID2.setError("ID 중복확인을 해주세요.");
             focusView = joinID2;
         }
         else {
-            startJoin(new JoinData(live_code, id, password, name));
+            startJoin(new JoinData(admin, id, password, name));
             showProgress(true);
         }
     }

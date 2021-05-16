@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class CodeImportData {
 
-    @SerializedName("email")
-    private String email;
+    @SerializedName("id")
+    private String id;
 
-    public CodeImportData(String email) {
-        this.email = email;
+    public CodeImportData(String id) {
+        this.id = id;
     }
 }

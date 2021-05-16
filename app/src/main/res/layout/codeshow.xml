@@ -191,26 +191,10 @@
             android:textSize="40dp">
         </TextView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Password"
-            android:textSize="40dp">
-        </TextView>
-        <TextView
-            android:id="@+id/pwd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_margin="20dp"
-            android:text="비밀번호"
-            android:textSize="50dp">
-        </TextView>
-
     </LinearLayout>
 
     <Button
-        android:id="@+id/CodeOk"
+        android:id="@+id/Codecheck"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"

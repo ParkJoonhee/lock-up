@@ -36,10 +36,10 @@ public class CodeaddActivity extends AppCompatActivity {
     int checkhg, cYear, cMonth, cDay;
 
     private RadioButton Single, Multi;
-    private EditText GaestName;
-    private EditText GaestOther;
+    private EditText GuestName;
+    private EditText GuestOther;
     private DatePicker Datepicker;
-    private String Date, GaestName1, GaestOther1, count;
+    private String Date, GuestName1, GuestOther1, count;
 
     private ProgressBar mProgressView;
     private ServiceApi service;
@@ -58,8 +58,8 @@ public class CodeaddActivity extends AppCompatActivity {
         Single = (RadioButton) findViewById(R.id.Single);
         Multi = (RadioButton) findViewById(R.id.Multi);
 
-        GaestName = (EditText) findViewById(R.id.GaestName);
-        GaestOther = (EditText) findViewById(R.id.GaestOther);
+        GuestName = (EditText) findViewById(R.id.GuestName);
+        GuestOther = (EditText) findViewById(R.id.GuestOther);
         Datepicker = (DatePicker) findViewById(R.id.Datepicker);
 
         CodeOk = (Button) findViewById(R.id.CodeOk);
@@ -175,16 +175,16 @@ public class CodeaddActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<CodeImport> call, Response <CodeImport> response){
                 CodeImport result = response.body();
-                if(!result.getGaestName().isEmpty())
+                if(!result.getGuestName().isEmpty())
                 {
-                    GaestName1 = result.getGaestName();
-                    GaestName.setText(GaestName1);
-                    GaestOther1 = result.getGaestOther();
-                    GaestOther.setText(GaestOther1);
+                    GuestName1 = result.getGuestName();
+                    GuestName.setText(GuestName1);
+                    GuestOther1 = result.getGuestOther();
+                    GuestOther.setText(GuestOther1);
                 } else {
                     Toast.makeText(com.example.myapplication.CodeaddActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
-                    GaestName.setText(null);
-                    GaestOther.setText(null);
+                    GuestName.setText(null);
+                    GuestOther.setText(null);
                 }
                 showProgress(false);
                 CodeOk.setVisibility(View.VISIBLE);
@@ -202,23 +202,23 @@ public class CodeaddActivity extends AppCompatActivity {
     }
 
     private void attemptcode() {
-        GaestName.setError(null);
-        GaestOther.setError(null);
+        GuestName.setError(null);
+        GuestOther.setError(null);
 
-        GaestName1 = GaestName.getText().toString();
-        GaestOther1 = GaestOther.getText().toString();
+        GuestName1 = GuestName.getText().toString();
+        GuestOther1 = GuestOther.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
         // 이름의 유효성 검사
-        if (GaestName1.isEmpty()) {
-            GaestName.setError("이름을 입력해주세요.");
-            focusView = GaestName;
+        if (GuestName1.isEmpty()) {
+            GuestName.setError("이름을 입력해주세요.");
+            focusView = GuestName;
             cancel = true;
-        } else if (!istitleValid(GaestName1)) {
-            GaestName.setError("영문 50자, 한글 25자 이하의 이름를 입력해주세요.");
-            focusView = GaestName;
+        } else if (!istitleValid(GuestName1)) {
+            GuestName.setError("영문 50자, 한글 25자 이하의 이름를 입력해주세요.");
+            focusView = GuestName;
             cancel = true;
         }
 
@@ -226,7 +226,7 @@ public class CodeaddActivity extends AppCompatActivity {
             focusView.requestFocus();
 
         } else {
-            startEdit(new CodeData(email, count, Date, GaestName1, GaestOther1));
+            startEdit(new CodeData(email, count, Date, GuestName1, GuestOther1));
             CodeOk.setVisibility(View.INVISIBLE);
             showProgress(true);
         }
