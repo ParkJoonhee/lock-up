@@ -10,8 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CodeActivity extends AppCompatActivity {
 
+    final static MainActivity Main = new MainActivity();
+    private static String ID = Main.ID;
+    private static int checkhg = Main.checkhg;
+    private static String name = Main.name;
+    private static int live_code = Main.live_code;
+    private static int house = Main.house;
+
     private Button main, notice, pw, code, setting, codeadd;
-    int checkhg;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,7 +32,6 @@ public class CodeActivity extends AppCompatActivity {
         code = (Button) findViewById(R.id.Code1);
         setting = (Button) findViewById(R.id.Setting1);
 
-        checkhg = 0;
 
         codeadd.setOnClickListener(new View.OnClickListener() {
             @Override

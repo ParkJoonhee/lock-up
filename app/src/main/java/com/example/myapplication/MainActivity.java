@@ -30,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar mProgressView;
     private ServiceApi service;
     int checkhg = 0;
+    int live_code, house;
+    String ID, name;
+
 
     public static String id;
 
@@ -109,7 +112,19 @@ public class MainActivity extends AppCompatActivity {
                 showProgress(false);
                 if(result.getCode()==200)
                 {
-                    Intent intent = new Intent(getApplicationContext(), com.example.myapplication.MenuActivity.class);
+                    Intent intent = null;
+
+                    ID = result.getId();
+                    name = result.getName();
+                    checkhg = result.getAdmin();
+                    live_code = result.getlive_code();
+                    house = result.gethouse();
+
+                    if(checkhg == 0) {
+                        intent = new Intent(getApplicationContext(), com.example.myapplication.HMenuActivity.class);
+                    } else if(checkhg == 1){
+                        intent = new Intent(getApplicationContext(), com.example.myapplication.MenuActivity.class);
+                    }
                     startActivity(intent);
                 }
             }

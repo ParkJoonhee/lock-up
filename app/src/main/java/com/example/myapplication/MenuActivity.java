@@ -31,8 +31,14 @@ import retrofit2.Response;
 
 public class MenuActivity extends AppCompatActivity {
 
+    final static MainActivity Main = new MainActivity();
+    private static String ID = Main.ID;
+    private static int checkhg = Main.checkhg;
+    private static String name = Main.name;
+    private static int live_code = Main.live_code;
+    private static int house = Main.house;
+
     private Button lock, main, notice, pw, code, setting;
-    int checkhg;
     private String ntitle, ndate;
     private TextView Notitle, Nodate;
     private ListView Noticelist;
@@ -57,7 +63,6 @@ public class MenuActivity extends AppCompatActivity {
         code = (Button) findViewById(R.id.Code1);
         setting = (Button) findViewById(R.id.Setting1);
 
-        checkhg = 0;
 /*
         final MyAdapter myAdapter = new MyAdapter(this,noticeDatalist);
         Noticelist.setAdapter(myAdapter);

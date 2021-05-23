@@ -30,10 +30,14 @@ import retrofit2.Response;
 public class CodeaddActivity extends AppCompatActivity {
 
     final static MainActivity Main = new MainActivity();
-    private static String id = Main.id;
+    private static String ID = Main.ID;
+    private static int checkhg = Main.checkhg;
+    private static String name = Main.name;
+    private static int live_code = Main.live_code;
+    private static int house = Main.house;
 
     private Button main, notice, pw, code, setting, CodeOk;
-    int checkhg, cYear, cMonth, cDay;
+    int cYear, cMonth, cDay;
 
     private RadioButton Single, Multi;
     private EditText GuestName;
@@ -64,7 +68,6 @@ public class CodeaddActivity extends AppCompatActivity {
 
         CodeOk = (Button) findViewById(R.id.CodeOk);
 
-        checkhg = 0;
 
         Single.setOnClickListener(new View.OnClickListener() {
 
@@ -226,7 +229,7 @@ public class CodeaddActivity extends AppCompatActivity {
             focusView.requestFocus();
 
         } else {
-            startEdit(new CodeData(id, count, Date, GuestName1, GuestOther1));
+            startEdit(new CodeData(ID, count, Date, GuestName1, GuestOther1));
             CodeOk.setVisibility(View.INVISIBLE);
             showProgress(true);
         }

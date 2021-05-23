@@ -14,8 +14,15 @@ import java.util.Random;
 
 public class PasswordActivity extends AppCompatActivity {
 
+    final static MainActivity Main = new MainActivity();
+    private static String ID = Main.ID;
+    private static int checkhg = Main.checkhg;
+    private static String name = Main.name;
+    private static int live_code = Main.live_code;
+    private static int house = Main.house;
+
     private Button paw, pattern, main, notice, pw, code, setting;
-    int checkhg;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,7 +38,6 @@ public class PasswordActivity extends AppCompatActivity {
         code = (Button) findViewById(R.id.Code1);
         setting = (Button) findViewById(R.id.Setting1);
 
-        checkhg = 0;
 
         paw.setOnClickListener(new View.OnClickListener() {
             @Override

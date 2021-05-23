@@ -13,6 +13,19 @@ public class LoginResponse {
     @SerializedName("id")
     private String id;
 
+    @SerializedName("name")
+    private String name;
+
+    @SerializedName("admin")
+    private int admin;
+
+    @SerializedName("live_code")
+    private int live_code;
+
+    @SerializedName("house")
+    private int house;
+
+
     public int getCode() {
         return code;
     }
@@ -21,5 +34,17 @@ public class LoginResponse {
     }
     public String getId() {
         return id;
+    }
+    public String getName() {
+        return name;
+    }
+    public int getAdmin() {
+        return admin;
+    }
+    public int getlive_code() {
+        return live_code;
+    }
+    public int gethouse() {
+        return house;
     }
 }
