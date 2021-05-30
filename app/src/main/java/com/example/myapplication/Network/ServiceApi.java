@@ -4,6 +4,8 @@ import com.example.myapplication.data.CodeData;
 import com.example.myapplication.data.CodeImport;
 import com.example.myapplication.data.CodeImportData;
 import com.example.myapplication.data.CodeResponse;
+import com.example.myapplication.data.GeustlistData;
+import com.example.myapplication.data.GeustlistResponse;
 import com.example.myapplication.data.JoinData;
 import com.example.myapplication.data.JoinData2;
 import com.example.myapplication.data.JoinResponse;
@@ -27,6 +29,9 @@ public interface ServiceApi {
 
     @POST("/double_check")
     Call<JoinResponse2> userJoin2(@Body JoinData2 data);
+
+    @POST("/Geustlist")
+    Call<GeustlistResponse> userGeust(@Body GeustlistData data);
 
     @POST("/user/menu")
     Call<NoticelistImport> userNotice(@Body NoticelistData data);
