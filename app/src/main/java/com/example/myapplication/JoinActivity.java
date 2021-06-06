@@ -67,13 +67,20 @@ public class JoinActivity extends AppCompatActivity {
 
         service = RetrofitClient.getClient().create(ServiceApi.class);
 
-        for (i = 0; i < radioArray.length; i++) {
-            radioArray[i].setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    admin = i;
-                }
-            });
-        }
+        radioArray[0].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                admin = 0;
+
+                Toast.makeText(JoinActivity.this, Integer.toString(admin), Toast.LENGTH_SHORT).show();
+            }
+        });
+        radioArray[1].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                admin = 1;
+
+                Toast.makeText(JoinActivity.this, Integer.toString(admin), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         joinID2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

@@ -24,8 +24,8 @@ public class CodeImport {
     @SerializedName("Date")
     private String Date;
 
-    @SerializedName("r_number")
-    private String r_number;
+    @SerializedName("house")
+    private String house;
 
     public CodeImport(String id, String count, String date, EditText guestName, EditText guestOther) {
     }
@@ -54,7 +54,7 @@ public class CodeImport {
         return Date;
     }
 
-    public String getr_number() {
-        return r_number;
+    public String getHouse() {
+        return house;
     }
 }

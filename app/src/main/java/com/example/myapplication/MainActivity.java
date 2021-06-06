@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                     name = result.getName();
                     checkhg = result.getAdmin();
                     live_code = result.getlive_code();
-                    house = result.gethouse();
+                    house = result.getHouse();
 
                     if(checkhg == 0) {
                         intent = new Intent(getApplicationContext(), com.example.myapplication.HMenuActivity.class);

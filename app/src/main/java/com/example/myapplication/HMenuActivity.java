@@ -18,10 +18,7 @@ import com.example.myapplication.Network.RetrofitClient;
 import com.example.myapplication.Network.ServiceApi;
 import com.example.myapplication.data.GeustlistData;
 import com.example.myapplication.data.GeustlistResponse;
-import com.example.myapplication.data.LoginData;
-import com.example.myapplication.data.LoginResponse;
-
-import java.util.ArrayList;
+import com.example.myapplication.data.GeustlistAdapter;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,15 +35,18 @@ public class HMenuActivity extends AppCompatActivity {
 
     private Button main, notice, pw, code, setting;
 
-    TextView r_number, GeustName;
+    TextView House, GeustName;
     ListView guestlist;
 
-    String r_number1, geustName1;
+    String geustName1;
+    int live_code1, House1;
+
 
     private ProgressBar mProgressView;
     private ServiceApi service;
 
-    ArrayList<GeustlistResponse> Geustlist;
+
+    private GeustlistAdapter myAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class HMenuActivity extends AppCompatActivity {
         code = (Button) findViewById(R.id.Code1);
         setting = (Button) findViewById(R.id.Setting1);
 
-        r_number = (TextView) findViewById(R.id.r_number);
+        House = (TextView) findViewById(R.id.House);
         GeustName = (TextView) findViewById(R.id.GeustName);
         guestlist = (ListView) findViewById(R.id.guestlist);
 
@@ -67,16 +67,16 @@ public class HMenuActivity extends AppCompatActivity {
         service = RetrofitClient.getClient().create(ServiceApi.class);
 
 
-        this.Guestlist(new GeustlistData(name,live_code,house));
-
-        final com.example.myapplication.data.GeustlistAdapter myAdapter = new com.example.myapplication.data.GeustlistAdapter(this,Geustlist);
+        myAdapter = new GeustlistAdapter();
 
         guestlist.setAdapter(myAdapter);
+
+        this.Guestlist(new GeustlistData(ID));
 
         guestlist.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id){
-                Toast.makeText(getApplicationContext(), myAdapter.getItem(position).getR_number(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), myAdapter.getItem(position).getHouse(),Toast.LENGTH_LONG).show();
             }
         });
 
@@ -139,22 +139,21 @@ public class HMenuActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<GeustlistResponse> call, Response<GeustlistResponse> response) {
                 GeustlistResponse result = response.body();
-                Toast.makeText(MainActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 if(result.getCode()==200)
                 {
                     Intent intent = null;
 
-                    r_number1 = result.getR_number();
+                    live_code1 = result.getlive_code();
+                    House1 = result.getHouse();
                     geustName1 = result.getGeustName();
 
-                    Geustlist = new ArrayList<GeustlistResponse>();
 
-                    //Geustlist.add(r_number1, geustName1);
+                    myAdapter.addItem(live_code1, House1, geustName1);
                 }
             }
             @Override
             public void onFailure(Call<GeustlistResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "목록 에러 발생", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HMenuActivity.this, "목록 에러 발생", Toast.LENGTH_SHORT).show();
                 Log.e("목록 에러 발생", t.getMessage());
             }
         });

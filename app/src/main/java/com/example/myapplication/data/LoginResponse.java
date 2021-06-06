@@ -44,7 +44,7 @@ public class LoginResponse {
     public int getlive_code() {
         return live_code;
     }
-    public int gethouse() {
+    public int getHouse() {
         return house;
     }
 }

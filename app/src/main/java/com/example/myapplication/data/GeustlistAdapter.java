@@ -13,16 +13,12 @@ import java.util.ArrayList;
 
 public class GeustlistAdapter extends BaseAdapter {
 
-    Context mContext = null;
-    LayoutInflater mLayoutInflater = null;
-    ArrayList<GeustlistResponse> Geustlist;
 
-    TextView r_number, GaestName;
+    private TextView House, GaestName;
 
-    public GeustlistAdapter(Context context, ArrayList<GeustlistResponse> data) {
-        mContext = context;
-        Geustlist = data;
-        mLayoutInflater = LayoutInflater.from(mContext);
+    private ArrayList<GeustlistResponse> Geustlist = new ArrayList<GeustlistResponse>();
+
+    public GeustlistAdapter() {
     }
 
     @Override
@@ -42,14 +38,30 @@ public class GeustlistAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View converView, ViewGroup parent) {
-        View view = mLayoutInflater.inflate(R.layout.glist, null);
+        final int pos = position;
+        final Context context = parent.getContext();
 
-        r_number = (TextView) view.findViewById(R.id.r_number);
-        GaestName = (TextView) view.findViewById(R.id.GaestName);
+        if (converView == null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            converView = inflater.inflate(R.layout.glist, parent, false);
+        }
 
-        r_number.setText(Geustlist.get(position).getR_number());
+        House = (TextView) converView.findViewById(R.id.House);
+        GaestName = (TextView) converView.findViewById(R.id.GaestName);
+
+        House.setText(Geustlist.get(position).getlive_code() + " - " + Geustlist.get(position).getHouse());
         GaestName.setText(Geustlist.get(position).getGeustName());
 
-        return view;
+        return converView;
+    }
+
+    public void addItem(int live_code, int house, String geustName1) {
+        GeustlistResponse item = new GeustlistResponse();
+
+        item.setlive_code(live_code);
+        item.setHouse(house);
+        item.setGeustName(geustName1);
+
+        Geustlist.add(item);
     }
 }
