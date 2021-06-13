@@ -1,3 +1,3 @@
 git add --all
-git commit -m "13week / Proceeding listview"
+git commit -m "14week / add privacy.xml"
 git push -u origin master

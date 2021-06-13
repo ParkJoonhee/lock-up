@@ -17,7 +17,7 @@ public class SettingActivity extends AppCompatActivity {
     private static int live_code = Main.live_code;
     private static int house = Main.house;
 
-    private Button main, notice, pw, code, setting;
+    private Button main, notice, pw, code, setting, mypage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,6 +29,18 @@ public class SettingActivity extends AppCompatActivity {
         pw = (Button) findViewById(R.id.Pw1);
         code = (Button) findViewById(R.id.Code1);
         setting = (Button) findViewById(R.id.Setting1);
+        mypage = (Button) findViewById(R.id.mypage);
+
+        mypage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*
+                Intent intent = null;
+                intent = new Intent(getApplicationContext(), com.example.myapplication.HMenuActivity.class);
+                startActivity(intent);
+                 */
+            }
+        });
 
 
         main.setOnClickListener(new View.OnClickListener() {
