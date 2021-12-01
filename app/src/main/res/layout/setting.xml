@@ -33,11 +33,11 @@
             android:orientation="horizontal">
 
             <ToggleButton
-                android:id="@+id/nfc"
+                android:id="@+id/bluetoothBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textOn="NFC ON"
-                android:textOff="NFC OFF"
+                android:textOn="bluetooth ON"
+                android:textOff="bluetooth OFF"
                 android:textSize="30dp">
             </ToggleButton>
 

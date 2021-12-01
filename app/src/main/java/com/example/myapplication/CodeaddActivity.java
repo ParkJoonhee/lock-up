@@ -29,12 +29,9 @@ import retrofit2.Response;
 
 public class CodeaddActivity extends AppCompatActivity {
 
-    final static MainActivity Main = new MainActivity();
-    private static String ID = Main.ID;
-    private static int checkhg = Main.checkhg;
-    private static String name = Main.name;
-    private static int live_code = Main.live_code;
-    private static int house = Main.house;
+    String ID;
+    int checkhg;
+    String name;
 
     private Button main, notice, pw, code, setting, CodeOk;
     int cYear, cMonth, cDay;
@@ -117,10 +114,13 @@ public class CodeaddActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = null;
                 if(checkhg == 0) {
-                    intent = new Intent(getApplicationContext(), com.example.myapplication.HMenuActivity.class);
-                } else if(checkhg == 1){
                     intent = new Intent(getApplicationContext(), com.example.myapplication.MenuActivity.class);
+                } else if(checkhg == 1){
+                    intent = new Intent(getApplicationContext(), com.example.myapplication.HMenuActivity.class);
                 }
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -131,10 +131,13 @@ public class CodeaddActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = null;
                 if(checkhg == 0) {
-                    intent = new Intent(getApplicationContext(), com.example.myapplication.HNoticeActivity.class);
-                } else if(checkhg == 1){
                     intent = new Intent(getApplicationContext(), com.example.myapplication.GNoticeActivity.class);
+                } else if(checkhg == 1){
+                    intent = new Intent(getApplicationContext(), com.example.myapplication.HNoticeActivity.class);
                 }
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -143,7 +146,10 @@ public class CodeaddActivity extends AppCompatActivity {
         pw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.PasswordActivity.class);
+                Intent intent = new Intent(getApplicationContext(), PasswordActivity.class);
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -152,6 +158,9 @@ public class CodeaddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), com.example.myapplication.CodeActivity.class);
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -160,6 +169,9 @@ public class CodeaddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), com.example.myapplication.SettingActivity.class);
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }

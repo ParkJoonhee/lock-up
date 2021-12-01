@@ -12,6 +12,8 @@ import com.example.myapplication.data.JoinResponse;
 import com.example.myapplication.data.JoinResponse2;
 import com.example.myapplication.data.LoginData;
 import com.example.myapplication.data.LoginResponse;
+import com.example.myapplication.data.NoticeData;
+import com.example.myapplication.data.NoticeResponse;
 import com.example.myapplication.data.NoticelistData;
 import com.example.myapplication.data.NoticelistImport;
 
@@ -30,16 +32,22 @@ public interface ServiceApi {
     @POST("/double_check")
     Call<JoinResponse2> userJoin2(@Body JoinData2 data);
 
-    @POST("/Geustlist")
-    Call<GeustlistResponse> userGeust(@Body GeustlistData data);
-
-    @POST("/user/menu")
-    Call<NoticelistImport> userNotice(@Body NoticelistData data);
-
+    @POST("/noticelist")
+    Call<NoticeResponse> userNoticeList(@Body NoticeData data);
+/*
+    @POST("/noticeadd")
+    Call<NoticeResponse> userNotice2(@Body NoticeData data);
+    */
     @POST("/user/code")
     Call<CodeResponse> userCode(@Body CodeData data);
 
     @POST("/user/code2")
     Call<CodeImport> userCode2(@Body CodeImportData data);
+
+    @POST("/Geustlist")
+    Call<GeustlistResponse> userGeust(@Body GeustlistData data);
+
+    @POST("/user/menu")
+    Call<NoticelistImport> userNotice(@Body NoticelistData data);
 
 }

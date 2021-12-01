@@ -14,12 +14,6 @@ public class GeustlistResponse {
     @SerializedName("message")
     private String message;
 
-    @SerializedName("live_code")
-    private int live_code;
-
-    @SerializedName("house")
-    private int house;
-
     @SerializedName("GeustName")
     private String GeustName;
 
@@ -28,12 +22,6 @@ public class GeustlistResponse {
     }
     public String getMessage() {
         return message;
-    }
-    public int getlive_code() {
-        return live_code;
-    }
-    public int getHouse() {
-        return house;
     }
     public String getGeustName() {
         return GeustName;

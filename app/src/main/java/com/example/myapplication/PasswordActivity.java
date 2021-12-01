@@ -6,6 +6,7 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,58 +15,54 @@ import java.util.Random;
 
 public class PasswordActivity extends AppCompatActivity {
 
-    final static MainActivity Main = new MainActivity();
-    private static String ID = Main.ID;
-    private static int checkhg = Main.checkhg;
-    private static String name = Main.name;
-    private static int live_code = Main.live_code;
-    private static int house = Main.house;
+    String ID;
+    int checkhg;
+    String name;
 
-    private Button paw, pattern, main, notice, pw, code, setting;
+    private TextView pwd, timer;
+    private Button main, notice, pw, code, setting;
+    int num;
+
+    private Random rnd = new Random();
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.password);
+        setContentView(R.layout.pw);
 
-        paw =(Button) findViewById(R.id.Pw);
-        pattern =(Button) findViewById(R.id.Pattern);
-
+        pwd = (TextView) findViewById(R.id.pwd);
+        timer = (TextView) findViewById(R.id.timer);
         main = (Button) findViewById(R.id.main1);
         notice =(Button) findViewById(R.id.notice);
         pw = (Button) findViewById(R.id.Pw1);
         code = (Button) findViewById(R.id.Code1);
         setting = (Button) findViewById(R.id.Setting1);
 
+        Intent intent = getIntent();
+        ID=intent.getExtras().getString("ID") ;
+        name=intent.getExtras().getString("name") ;
+        checkhg=Integer.parseInt(intent.getExtras().getString("checkhg"));
 
-        paw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.PwActivity.class);
-                startActivity(intent);
-            }
-        });
+        num = 0;
 
-        pattern.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*
-                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.PwActivity.class);
-                startActivity(intent);
-                 */
-            }
-        });
+        Randomnumber();
 
+        countDown();
+
+        Toast.makeText(PasswordActivity.this, ID, Toast.LENGTH_SHORT).show();
         main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = null;
                 if(checkhg == 0) {
-                    intent = new Intent(getApplicationContext(), com.example.myapplication.HMenuActivity.class);
-                } else if(checkhg == 1){
                     intent = new Intent(getApplicationContext(), com.example.myapplication.MenuActivity.class);
+                } else if(checkhg == 1){
+                    intent = new Intent(getApplicationContext(), com.example.myapplication.HMenuActivity.class);
                 }
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -76,10 +73,13 @@ public class PasswordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = null;
                 if(checkhg == 0) {
-                    intent = new Intent(getApplicationContext(), com.example.myapplication.HNoticeActivity.class);
-                } else if(checkhg == 1){
                     intent = new Intent(getApplicationContext(), com.example.myapplication.GNoticeActivity.class);
+                } else if(checkhg == 1){
+                    intent = new Intent(getApplicationContext(), com.example.myapplication.HNoticeActivity.class);
                 }
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -88,16 +88,21 @@ public class PasswordActivity extends AppCompatActivity {
         pw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.PasswordActivity.class);
+                Intent intent = new Intent(getApplicationContext(), PasswordActivity.class);
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
         });
-
         code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), com.example.myapplication.CodeActivity.class);
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -106,10 +111,39 @@ public class PasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), com.example.myapplication.SettingActivity.class);
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
         });
     }
+    public void Randomnumber() {
 
+        do {
+            num = rnd.nextInt(999999);
+        } while (num < 100000);
+
+        pwd.setText(Integer.toString(num));
+
+        countDown();
+    }
+
+
+    public void countDown() {
+        new CountDownTimer(30000, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timer.setText(Integer.toString((int) (millisUntilFinished / 1000)));
+            }
+
+            @Override
+            public void onFinish() {
+                Randomnumber();
+            }
+
+        }.start();
+    }
 }

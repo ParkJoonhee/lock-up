@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -23,6 +22,7 @@ import com.example.myapplication.Network.ServiceApi;
 import com.example.myapplication.data.NoticelistData;
 import com.example.myapplication.data.NoticelistImport;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -31,12 +31,9 @@ import retrofit2.Response;
 
 public class MenuActivity extends AppCompatActivity {
 
-    final static MainActivity Main = new MainActivity();
-    private static String ID = Main.ID;
-    private static int checkhg = Main.checkhg;
-    private static String name = Main.name;
-    private static int live_code = Main.live_code;
-    private static int house = Main.house;
+    String ID;
+    int checkhg;
+    String name;
 
     private Button lock, main, notice, pw, code, setting;
     private String ntitle, ndate;
@@ -46,7 +43,10 @@ public class MenuActivity extends AppCompatActivity {
     private ProgressBar mProgressView;
     private ServiceApi service;
 
-    ArrayList<NoticelistImport> noticeDatalist;
+    private String open="open";
+
+
+    private OutputStream outputStream = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +63,25 @@ public class MenuActivity extends AppCompatActivity {
         code = (Button) findViewById(R.id.Code1);
         setting = (Button) findViewById(R.id.Setting1);
 
+        Intent intent = getIntent();
+        ID=intent.getExtras().getString("ID") ;
+        name=intent.getExtras().getString("name") ;
+        checkhg=Integer.parseInt(intent.getExtras().getString("checkhg"));
+
+
+        lock.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View v) {
+                Toast.makeText(MenuActivity.this, String.valueOf(checkhg), Toast.LENGTH_LONG).show();
+
+                //SettingActivity.sendData(open);
+
+            }
+
+        });
+
 /*
         final MyAdapter myAdapter = new MyAdapter(this,noticeDatalist);
         Noticelist.setAdapter(myAdapter);
@@ -70,11 +89,6 @@ public class MenuActivity extends AppCompatActivity {
 
         noticestart(new NoticelistData(ntitle,ndate));
 */
-        lock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
 /*
         Noticelist.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -88,11 +102,10 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = null;
-                if(checkhg == 0) {
-                    intent = new Intent(getApplicationContext(), com.example.myapplication.HMenuActivity.class);
-                } else if(checkhg == 1){
-                    intent = new Intent(getApplicationContext(), com.example.myapplication.MenuActivity.class);
-                }
+                intent = new Intent(getApplicationContext(), com.example.myapplication.MenuActivity.class);
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -103,10 +116,13 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = null;
                 if(checkhg == 0) {
-                    intent = new Intent(getApplicationContext(), com.example.myapplication.HNoticeActivity.class);
-                } else if(checkhg == 1){
                     intent = new Intent(getApplicationContext(), com.example.myapplication.GNoticeActivity.class);
+                } else if(checkhg == 1){
+                    intent = new Intent(getApplicationContext(), com.example.myapplication.HNoticeActivity.class);
                 }
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -115,7 +131,10 @@ public class MenuActivity extends AppCompatActivity {
         pw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.PasswordActivity.class);
+                Intent intent = new Intent(getApplicationContext(), PasswordActivity.class);
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -124,6 +143,9 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), com.example.myapplication.CodeActivity.class);
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -132,6 +154,9 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), com.example.myapplication.SettingActivity.class);
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }

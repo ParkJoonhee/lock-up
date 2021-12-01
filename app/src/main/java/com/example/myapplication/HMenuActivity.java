@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -26,12 +25,9 @@ import retrofit2.Response;
 
 public class HMenuActivity extends AppCompatActivity {
 
-    final static MainActivity Main = new MainActivity();
-    private static String ID = Main.ID;
-    private static int checkhg = Main.checkhg;
-    private static String name = Main.name;
-    private static int live_code = Main.live_code;
-    private static int house = Main.house;
+    String ID;
+    int checkhg;
+    String name;
 
     private Button main, notice, pw, code, setting;
 
@@ -39,7 +35,6 @@ public class HMenuActivity extends AppCompatActivity {
     ListView guestlist;
 
     String geustName1;
-    int live_code1, House1;
 
 
     private ProgressBar mProgressView;
@@ -66,7 +61,12 @@ public class HMenuActivity extends AppCompatActivity {
         mProgressView = (ProgressBar) findViewById(R.id.login_progress);
         service = RetrofitClient.getClient().create(ServiceApi.class);
 
+        Intent intent = getIntent();
+        ID=intent.getExtras().getString("ID") ;
+        name=intent.getExtras().getString("name") ;
+        checkhg=Integer.parseInt(intent.getExtras().getString("checkhg"));
 
+/*
         myAdapter = new GeustlistAdapter();
 
         guestlist.setAdapter(myAdapter);
@@ -79,16 +79,19 @@ public class HMenuActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), myAdapter.getItem(position).getHouse(),Toast.LENGTH_LONG).show();
             }
         });
-
+*/
         main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = null;
                 if(checkhg == 0) {
-                    intent = new Intent(getApplicationContext(), com.example.myapplication.HMenuActivity.class);
-                } else if(checkhg == 1){
                     intent = new Intent(getApplicationContext(), com.example.myapplication.MenuActivity.class);
+                } else if(checkhg == 1){
+                    intent = new Intent(getApplicationContext(), com.example.myapplication.HMenuActivity.class);
                 }
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -99,10 +102,13 @@ public class HMenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = null;
                 if(checkhg == 0) {
-                    intent = new Intent(getApplicationContext(), com.example.myapplication.HNoticeActivity.class);
-                } else if(checkhg == 1){
                     intent = new Intent(getApplicationContext(), com.example.myapplication.GNoticeActivity.class);
+                } else if(checkhg == 1){
+                    intent = new Intent(getApplicationContext(), com.example.myapplication.HNoticeActivity.class);
                 }
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -111,7 +117,10 @@ public class HMenuActivity extends AppCompatActivity {
         pw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.PasswordActivity.class);
+                Intent intent = new Intent(getApplicationContext(), PasswordActivity.class);
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -120,6 +129,9 @@ public class HMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), com.example.myapplication.CodeActivity.class);
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -128,6 +140,9 @@ public class HMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), com.example.myapplication.SettingActivity.class);
+                intent.putExtra("ID", ID) ;
+                intent.putExtra("name", name) ;
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -143,12 +158,10 @@ public class HMenuActivity extends AppCompatActivity {
                 {
                     Intent intent = null;
 
-                    live_code1 = result.getlive_code();
-                    House1 = result.getHouse();
                     geustName1 = result.getGeustName();
 
 
-                    myAdapter.addItem(live_code1, House1, geustName1);
+                    //myAdapter.addItem(live_code1, House1, geustName1);
                 }
             }
             @Override

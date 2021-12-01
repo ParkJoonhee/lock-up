@@ -71,14 +71,12 @@ public class JoinActivity extends AppCompatActivity {
             public void onClick(View v) {
                 admin = 0;
 
-                Toast.makeText(JoinActivity.this, Integer.toString(admin), Toast.LENGTH_SHORT).show();
             }
         });
         radioArray[1].setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 admin = 1;
 
-                Toast.makeText(JoinActivity.this, Integer.toString(admin), Toast.LENGTH_SHORT).show();
             }
         });
 

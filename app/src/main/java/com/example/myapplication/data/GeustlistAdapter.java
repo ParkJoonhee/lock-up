@@ -48,8 +48,6 @@ public class GeustlistAdapter extends BaseAdapter {
 
         House = (TextView) converView.findViewById(R.id.House);
         GaestName = (TextView) converView.findViewById(R.id.GaestName);
-
-        House.setText(Geustlist.get(position).getlive_code() + " - " + Geustlist.get(position).getHouse());
         GaestName.setText(Geustlist.get(position).getGeustName());
 
         return converView;

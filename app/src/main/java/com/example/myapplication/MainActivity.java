@@ -29,9 +29,11 @@ public class MainActivity extends AppCompatActivity {
     private Button join;
     private ProgressBar mProgressView;
     private ServiceApi service;
-    int checkhg = 0;
-    int live_code, house;
+    int checkhg = 2;
     String ID, name;
+    boolean cancel;
+    Intent intent = null;
+    String code;
 
 
     public static String id;
@@ -53,15 +55,60 @@ public class MainActivity extends AppCompatActivity {
         login1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //attemptLogin();
-                Intent intent = null;
-                if(checkhg == 0) {
-                    intent = new Intent(getApplicationContext(), com.example.myapplication.HMenuActivity.class);
-                } else if(checkhg == 1){
-                    intent = new Intent(getApplicationContext(), com.example.myapplication.MenuActivity.class);
+                joinID1.setError(null);
+                joinPw1.setError(null);
+                id = joinID1.getText().toString();
+                String password = joinPw1.getText().toString();
+                View focusView = null;
+                cancel = false;
+                // 패스워드의 유효성 검사
+                if (password.isEmpty()) {
+                    joinID1.setError("비밀번호를 입력해주세요.");
+                    focusView = joinID1;
+                    cancel = true;
+                } else if (!isPasswordValid(password)) {
+                    joinPw1.setError("6자 이상의 비밀번호를 입력해주세요.");
+                    focusView = joinPw1;
+                    cancel = true;
                 }
-                    startActivity(intent);
-                finish();
+                // 이메일의 유효성 검사
+                if (id.isEmpty()) {
+                    joinID1.setError("아이디를 입력해주세요.");
+                    focusView = joinID1;
+                    cancel = true;
+                }
+                if (cancel) {
+                    focusView.requestFocus();
+                } else {
+                    service.userLogin(new LoginData(id, password)).enqueue(new Callback<LoginResponse>() {
+                        @Override
+                        public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+
+                            LoginResponse result = response.body();
+                            Toast.makeText(MainActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                            showProgress(false);
+                            code = String.valueOf(result.getCode());
+                            if (code.equals("200")) {
+                                ID = result.getId();
+                                name = result.getName();
+                                checkhg = result.getAdmin();
+                                intent = new Intent(getApplicationContext(), com.example.myapplication.MenuActivity.class);
+                                intent.putExtra("ID", ID) ;
+                                intent.putExtra("name", name) ;
+                                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
+                                startActivity(intent);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<LoginResponse> call, Throwable t) {
+                            Toast.makeText(MainActivity.this, "로그인 에러 발생", Toast.LENGTH_SHORT).show();
+                            Log.e("로그인 에러 발생", t.getMessage());
+                            showProgress(false);
+                        }
+                    });
+                    showProgress(true);
+                }
             }
         });
         join.setOnClickListener(new View.OnClickListener() {
@@ -69,70 +116,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), com.example.myapplication.JoinActivity.class);
                 startActivity(intent);
-            }
-        });
-    }
-
-    private void attemptLogin() {
-        joinID1.setError(null);
-        joinPw1.setError(null);
-        id = joinID1.getText().toString();
-        String password = joinPw1.getText().toString();
-        boolean cancel = false;
-        View focusView = null;
-        // 패스워드의 유효성 검사
-        if (password.isEmpty()) {
-            joinID1.setError("비밀번호를 입력해주세요.");
-            focusView = joinID1;
-            cancel = true;
-        } else if (!isPasswordValid(password)) {
-            joinPw1.setError("6자 이상의 비밀번호를 입력해주세요.");
-            focusView = joinPw1;
-            cancel = true;
-        }
-        // 이메일의 유효성 검사
-        if (id.isEmpty()) {
-            joinID1.setError("아이디를 입력해주세요.");
-            focusView = joinID1;
-            cancel = true;
-        }
-        if (cancel) {
-            focusView.requestFocus();
-        } else {
-            startLogin(new LoginData(id, password));
-            showProgress(true);
-        }
-    }
-    private void startLogin(LoginData data) {
-        service.userLogin(data).enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                LoginResponse result = response.body();
-                Toast.makeText(MainActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
-                showProgress(false);
-                if(result.getCode()==200)
-                {
-                    Intent intent = null;
-
-                    ID = result.getId();
-                    name = result.getName();
-                    checkhg = result.getAdmin();
-                    live_code = result.getlive_code();
-                    house = result.getHouse();
-
-                    if(checkhg == 0) {
-                        intent = new Intent(getApplicationContext(), com.example.myapplication.HMenuActivity.class);
-                    } else if(checkhg == 1){
-                        intent = new Intent(getApplicationContext(), com.example.myapplication.MenuActivity.class);
-                    }
-                    startActivity(intent);
-                }
-            }
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "로그인 에러 발생", Toast.LENGTH_SHORT).show();
-                Log.e("로그인 에러 발생", t.getMessage());
-                showProgress(false);
             }
         });
     }

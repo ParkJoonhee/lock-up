@@ -4,20 +4,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GgNoticeActivity extends AppCompatActivity {
 
-    final static MainActivity Main = new MainActivity();
-    private static String ID = Main.ID;
-    private static int checkhg = Main.checkhg;
-    private static String name = Main.name;
-    private static int live_code = Main.live_code;
-    private static int house = Main.house;
+    String ID;
+    int checkhg;
+    String name;
 
     private Button hbtn, gbtn, addbtn, main, notice, pw, code, setting;
+    private ListView Noticelist;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,11 +34,21 @@ public class GgNoticeActivity extends AppCompatActivity {
         code = (Button) findViewById(R.id.Code1);
         setting = (Button) findViewById(R.id.Setting1);
 
+        Intent intent = getIntent();
+        ID=intent.getExtras().getString("ID") ;
+        name=intent.getExtras().getString("name") ;
+        String s=intent.getExtras().getString("checkhg");
+        Toast.makeText(GgNoticeActivity.this, s, Toast.LENGTH_LONG).show();
+        checkhg=Integer.parseInt(s);
+
 
         hbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.GNoticeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), GNoticeActivity.class);
+                intent.putExtra("ID", ID);
+                intent.putExtra("name", name);
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -47,7 +57,10 @@ public class GgNoticeActivity extends AppCompatActivity {
         gbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.GgNoticeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), GgNoticeActivity.class);
+                intent.putExtra("ID", ID);
+                intent.putExtra("name", name);
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -57,6 +70,9 @@ public class GgNoticeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NoticeaddActivity.class);
+                intent.putExtra("ID", ID);
+                intent.putExtra("name", name);
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
             }
         });
@@ -66,25 +82,30 @@ public class GgNoticeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = null;
                 if(checkhg == 0) {
-                    intent = new Intent(getApplicationContext(), com.example.myapplication.HMenuActivity.class);
-                } else if(checkhg == 1){
                     intent = new Intent(getApplicationContext(), com.example.myapplication.MenuActivity.class);
+                } else if(checkhg == 1){
+                    intent = new Intent(getApplicationContext(), com.example.myapplication.HMenuActivity.class);
                 }
+                intent.putExtra("ID", ID);
+                intent.putExtra("name", name);
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
         });
-
 
         notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = null;
                 if(checkhg == 0) {
-                    intent = new Intent(getApplicationContext(), HNoticeActivity.class);
+                    intent = new Intent(getApplicationContext(), com.example.myapplication.GNoticeActivity.class);
                 } else if(checkhg == 1){
-                    intent = new Intent(getApplicationContext(), GgNoticeActivity.class);
+                    intent = new Intent(getApplicationContext(), com.example.myapplication.HNoticeActivity.class);
                 }
+                intent.putExtra("ID", ID);
+                intent.putExtra("name", name);
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -94,6 +115,9 @@ public class GgNoticeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), PasswordActivity.class);
+                intent.putExtra("ID", ID);
+                intent.putExtra("name", name);
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -101,7 +125,10 @@ public class GgNoticeActivity extends AppCompatActivity {
         code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CodeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.CodeActivity.class);
+                intent.putExtra("ID", ID);
+                intent.putExtra("name", name);
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
@@ -109,7 +136,10 @@ public class GgNoticeActivity extends AppCompatActivity {
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
+                Intent intent = new Intent(getApplicationContext(), com.example.myapplication.SettingActivity.class);
+                intent.putExtra("ID", ID);
+                intent.putExtra("name", name);
+                intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 startActivity(intent);
                 finish();
             }
