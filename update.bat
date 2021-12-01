@@ -1,3 +1,3 @@
 git add --all
-git commit -m "14week / add privacy.xml"
+git commit -m "1130"
 git push -u origin master
