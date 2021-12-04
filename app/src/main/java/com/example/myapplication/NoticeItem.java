@@ -18,7 +18,7 @@ public class NoticeItem {
     public void setName(String name) {
         this.name=name;
     }
-    public void setNotice(String content){
+    public void setNotice(String notice){
         this.notice=notice;
     }
 

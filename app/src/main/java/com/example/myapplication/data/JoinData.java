@@ -16,7 +16,6 @@ public class JoinData {
     @SerializedName("name")
     private String name;
 
-
     public JoinData(int admin, String id, String password, String name) {
         this.admin = admin;
         this.id = id;

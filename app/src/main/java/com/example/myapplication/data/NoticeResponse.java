@@ -2,10 +2,7 @@ package com.example.myapplication.data;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 
 public class NoticeResponse {
 
@@ -33,7 +30,6 @@ public class NoticeResponse {
         public @SerializedName("date") String date;
         public @SerializedName("name") String name;
         public @SerializedName("notice") String notice;
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss");
 
         public String getTitle() {
             return title;
@@ -47,9 +43,8 @@ public class NoticeResponse {
             return date;
         }
 
-        public void setDate(Date date) {
-            this.date = format.format(date);
-            //this.date = date;
+        public void setDate(String date) {
+            this.date = date;
         }
 
         public String getName() {

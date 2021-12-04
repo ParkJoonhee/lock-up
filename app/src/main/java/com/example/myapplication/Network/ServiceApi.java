@@ -1,9 +1,5 @@
 package com.example.myapplication.Network;
 
-import com.example.myapplication.data.CodeData;
-import com.example.myapplication.data.CodeImport;
-import com.example.myapplication.data.CodeImportData;
-import com.example.myapplication.data.CodeResponse;
 import com.example.myapplication.data.GeustlistData;
 import com.example.myapplication.data.GeustlistResponse;
 import com.example.myapplication.data.JoinData;
@@ -13,9 +9,11 @@ import com.example.myapplication.data.JoinResponse2;
 import com.example.myapplication.data.LoginData;
 import com.example.myapplication.data.LoginResponse;
 import com.example.myapplication.data.NoticeData;
+import com.example.myapplication.data.NoticeData2;
 import com.example.myapplication.data.NoticeResponse;
-import com.example.myapplication.data.NoticelistData;
-import com.example.myapplication.data.NoticelistImport;
+import com.example.myapplication.data.NoticeResponse2;
+import com.example.myapplication.data.OpenData;
+import com.example.myapplication.data.OpenResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -34,20 +32,11 @@ public interface ServiceApi {
 
     @POST("/noticelist")
     Call<NoticeResponse> userNoticeList(@Body NoticeData data);
-/*
+
     @POST("/noticeadd")
-    Call<NoticeResponse> userNotice2(@Body NoticeData data);
-    */
-    @POST("/user/code")
-    Call<CodeResponse> userCode(@Body CodeData data);
+    Call<NoticeResponse2> userNoticeAdd(@Body NoticeData2 data);
 
-    @POST("/user/code2")
-    Call<CodeImport> userCode2(@Body CodeImportData data);
-
-    @POST("/Geustlist")
-    Call<GeustlistResponse> userGeust(@Body GeustlistData data);
-
-    @POST("/user/menu")
-    Call<NoticelistImport> userNotice(@Body NoticelistData data);
+    @POST("/open")
+    Call<OpenResponse> userOpen(@Body OpenData data);
 
 }

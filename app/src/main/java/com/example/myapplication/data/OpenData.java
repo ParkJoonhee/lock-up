@@ -2,12 +2,16 @@ package com.example.myapplication.data;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CodeImportData {
+public class OpenData {
 
     @SerializedName("id")
-    private String id;
+    String id;
 
-    public CodeImportData(String id) {
+    @SerializedName("oc")
+    String oc;
+
+    public OpenData(String id,String oc) {
         this.id = id;
+        this.oc = oc;
     }
 }

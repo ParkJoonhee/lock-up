@@ -20,10 +20,18 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/Lock"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="잠금버튼"
+                android:id="@+id/open"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:background="@drawable/open"
+                android:textSize="50dp"
+                android:visibility="gone">
+            </Button>
+            <Button
+                android:id="@+id/close"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:background="@drawable/close"
                 android:textSize="50dp">
             </Button>
 
@@ -56,50 +64,35 @@
         android:orientation="horizontal"
         android:layout_weight="1">
 
-        <Button
-            android:id="@+id/main1"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="메인"
-            android:textSize="30dp">
-        </Button>
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1">
 
-        <Button
-            android:id="@+id/notice"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="공지"
-            android:textSize="30dp">
-        </Button>
+            <Button
+                android:id="@+id/main1"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/home">
+            </Button>
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/Pw1"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="비번"
-            android:textSize="30dp">
-        </Button>
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1">
 
-        <Button
-            android:id="@+id/Code1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="코드"
-            android:textSize="30dp">
-        </Button>
-
-        <Button
-            android:id="@+id/Setting1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="설정"
-            android:textSize="30dp">
-        </Button>
+            <Button
+                android:id="@+id/notice"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/notice">
+            </Button>
+        </LinearLayout>
 
     </LinearLayout>
 

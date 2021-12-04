@@ -2,7 +2,7 @@ package com.example.myapplication.data;
 
 import com.google.gson.annotations.SerializedName;
 
-public class NoticelistResponse {
+public class NoticeResponse2 {
 
     @SerializedName("code")
     private int code;

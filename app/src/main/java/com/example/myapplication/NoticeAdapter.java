@@ -80,11 +80,11 @@ public class NoticeAdapter extends BaseAdapter {
     }
 
 
-    void showDialog(Context context,String title,String content){
+    void showDialog(Context context,String title,String notice){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-        builder.setTitle(title).setMessage(content);
+        builder.setTitle(title).setMessage(notice);
         builder.setCancelable(false);
 
         builder.setNeutralButton("닫기", new DialogInterface.OnClickListener(){

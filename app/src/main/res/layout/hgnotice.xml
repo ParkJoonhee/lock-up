@@ -76,50 +76,35 @@
         android:orientation="horizontal"
         android:layout_weight="1">
 
-        <Button
-            android:id="@+id/main1"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="메인"
-            android:textSize="30dp">
-        </Button>
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1">
 
-        <Button
-            android:id="@+id/notice"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="공지"
-            android:textSize="30dp">
-        </Button>
+            <Button
+                android:id="@+id/main1"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/home">
+            </Button>
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/Pw1"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="비번"
-            android:textSize="30dp">
-        </Button>
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1">
 
-        <Button
-            android:id="@+id/Code1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="코드"
-            android:textSize="30dp">
-        </Button>
-
-        <Button
-            android:id="@+id/Setting1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="설정"
-            android:textSize="30dp">
-        </Button>
+            <Button
+                android:id="@+id/notice"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/notice">
+            </Button>
+        </LinearLayout>
 
     </LinearLayout>
 

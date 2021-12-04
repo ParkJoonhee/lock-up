@@ -45,7 +45,6 @@ public class JoinActivity extends AppCompatActivity {
     private String checkid2 = " ";
     private String id;
     boolean check = false;
-    private int i;
 
 
     @Override

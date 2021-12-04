@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     boolean cancel;
     Intent intent = null;
     String code;
+    int connect=0;
+    String device = "none";
 
 
     public static String id;
@@ -85,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
                         public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
                             LoginResponse result = response.body();
-                            Toast.makeText(MainActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                             showProgress(false);
                             code = String.valueOf(result.getCode());
                             if (code.equals("200")) {
@@ -96,7 +97,11 @@ public class MainActivity extends AppCompatActivity {
                                 intent.putExtra("ID", ID) ;
                                 intent.putExtra("name", name) ;
                                 intent.putExtra("checkhg", String.valueOf(checkhg)) ;
+                                intent.putExtra("connect", String.valueOf(connect)) ;
+                                intent.putExtra("device", device);
                                 startActivity(intent);
+                                overridePendingTransition(0, 0);
+                                finish();
                             }
                         }
 

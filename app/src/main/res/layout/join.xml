@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginRight="20dp"
-                android:text="사용자"
+                android:text="게스트"
                 android:textSize="30dp"
                 android:checked="true">
             </RadioButton>
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
-                android:text="관리자"
+                android:text="호스트"
                 android:textSize="30dp">
             </RadioButton>
 
