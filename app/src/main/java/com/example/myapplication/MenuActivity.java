@@ -43,6 +43,7 @@ public class MenuActivity extends AppCompatActivity {
     String name;
     int connect=0;
     String device;
+    int conn=0;
 
     private Button Close,Open, main, notice;
     private ListView Noticelist;
@@ -93,59 +94,40 @@ public class MenuActivity extends AppCompatActivity {
             Close.setVisibility(View.VISIBLE);
         }
 
-        if(bluetoothAdapter == null) { // 디바이스가 블루투스를 지원하지 않을 때
+        bluetoothOn();
 
-            // 여기에 처리 할 코드를 작성하세요.0
-            Toast.makeText(getApplicationContext(),"디바이스가 블루투스를 지원하지 않습니다",Toast.LENGTH_SHORT).show();
-        }
-
-        else { // 디바이스가 블루투스를 지원 할 때
-
-            if(bluetoothAdapter.isEnabled()) { // 블루투스가 활성화 상태 (기기에 블루투스가 켜져있음)
-                selectBluetoothDevice(); // 블루투스 디바이스 선택 함수 호출
-
-            }
-
-            else { // 블루투스가 비 활성화 상태 (기기에 블루투스가 꺼져있음)
-
-                // 블루투스를 활성화 하기 위한 다이얼로그 출력
-                intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-
-                // 선택한 값이 onActivityResult 함수에서 콜백된다.
-
-                startActivityForResult(intent, REQUEST_ENABLE_BT);
-                selectBluetoothDevice(); // 블루투스 디바이스 선택 함수 호출
-
-            }
-
-        }
         Close.setOnClickListener(new View.OnClickListener() {
 
             @Override
 
             public void onClick(View v) {
 
-                sendData(open);
-                String oc = "open";
-                connect =1;
-                Close.setVisibility(View.GONE);
-                Open.setVisibility(View.VISIBLE);
-                service.userOpen(new OpenData(id,oc)).enqueue(new Callback<OpenResponse>() {
-                    @Override
-                    public void onResponse(Call<OpenResponse> call, Response<OpenResponse> response) {
-                        OpenResponse result = response.body();
-                        if(result.getCode()==200){
-                            Toast.makeText(getApplicationContext(),result.getMessage(),Toast.LENGTH_SHORT).show();
+                if(conn ==0) {
+                    bluetoothOn();
+                }
+                if(conn ==1) {
+                    Close.setVisibility(View.GONE);
+                    Open.setVisibility(View.VISIBLE);
+                    sendData(open);
+                    String oc = "open";
+                    connect =1;
+                    service.userOpen(new OpenData(id,oc)).enqueue(new Callback<OpenResponse>() {
+                        @Override
+                        public void onResponse(Call<OpenResponse> call, Response<OpenResponse> response) {
+                            OpenResponse result = response.body();
+                            if(result.getCode()==200){
+                                Toast.makeText(getApplicationContext(),result.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+
                         }
 
-                    }
-
-                    @Override
-                    public void onFailure(Call<OpenResponse> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "오픈기록 에러 발생", Toast.LENGTH_SHORT).show();
-                        Log.e("오픈기록 에러 발생", t.getMessage());
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<OpenResponse> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(), "오픈기록 에러 발생", Toast.LENGTH_SHORT).show();
+                            Log.e("오픈기록 에러 발생", t.getMessage());
+                        }
+                    });
+                }
             }
 
         });
@@ -156,27 +138,32 @@ public class MenuActivity extends AppCompatActivity {
 
             public void onClick(View v) {
 
-                sendData(open);
-                String oc = "close";
-                connect =0;
-                Open.setVisibility(View.GONE);
-                Close.setVisibility(View.VISIBLE);
-                service.userOpen(new OpenData(id,oc)).enqueue(new Callback<OpenResponse>() {
-                    @Override
-                    public void onResponse(Call<OpenResponse> call, Response<OpenResponse> response) {
-                        OpenResponse result = response.body();
-                        if(result.getCode()==200){
-                            Toast.makeText(getApplicationContext(),result.getMessage(),Toast.LENGTH_SHORT).show();
+                if(conn ==0) {
+                    bluetoothOn();
+                }
+                if(conn ==1) {
+                    Open.setVisibility(View.GONE);
+                    Close.setVisibility(View.VISIBLE);
+                    sendData(open);
+                    String oc = "close";
+                    connect =0;
+                    service.userOpen(new OpenData(id,oc)).enqueue(new Callback<OpenResponse>() {
+                        @Override
+                        public void onResponse(Call<OpenResponse> call, Response<OpenResponse> response) {
+                            OpenResponse result = response.body();
+                            if(result.getCode()==200){
+                                Toast.makeText(getApplicationContext(),result.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+
                         }
 
-                    }
-
-                    @Override
-                    public void onFailure(Call<OpenResponse> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "오픈기록 에러 발생", Toast.LENGTH_SHORT).show();
-                        Log.e("오픈기록 에러 발생", t.getMessage());
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<OpenResponse> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(), "오픈기록 에러 발생", Toast.LENGTH_SHORT).show();
+                            Log.e("오픈기록 에러 발생", t.getMessage());
+                        }
+                    });
+                }
             }
 
         });
@@ -217,10 +204,12 @@ public class MenuActivity extends AppCompatActivity {
                 intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 intent.putExtra("connect", String.valueOf(connect)) ;
                 intent.putExtra("device", device);
-                try {
-                    bluetoothSocket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if(conn==1){
+                    try {
+                        bluetoothSocket.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 startActivity(intent);
                 overridePendingTransition(0, 0);
@@ -237,21 +226,53 @@ public class MenuActivity extends AppCompatActivity {
                 } else if(checkhg == 1){
                     intent = new Intent(getApplicationContext(), com.example.myapplication.HNoticeActivity.class);
                 }
+                if(conn==1){
+                    try {
+                        bluetoothSocket.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 intent.putExtra("ID", ID) ;
                 intent.putExtra("name", name) ;
                 intent.putExtra("checkhg", String.valueOf(checkhg)) ;
                 intent.putExtra("connect", String.valueOf(connect)) ;
                 intent.putExtra("device", device);
-                try {
-                    bluetoothSocket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
             }
         });
+    }
+
+    private void bluetoothOn() {
+
+        if(bluetoothAdapter == null) { // 디바이스가 블루투스를 지원하지 않을 때
+
+            // 여기에 처리 할 코드를 작성하세요.0
+            Toast.makeText(getApplicationContext(),"디바이스가 블루투스를 지원하지 않습니다",Toast.LENGTH_SHORT).show();
+        }
+
+        else { // 디바이스가 블루투스를 지원 할 때
+
+            if(bluetoothAdapter.isEnabled()) { // 블루투스가 활성화 상태 (기기에 블루투스가 켜져있음)
+                selectBluetoothDevice(); // 블루투스 디바이스 선택 함수 호출
+
+            }
+
+            else { // 블루투스가 비 활성화 상태 (기기에 블루투스가 꺼져있음)
+
+                // 블루투스를 활성화 하기 위한 다이얼로그 출력
+                Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+
+                // 선택한 값이 onActivityResult 함수에서 콜백된다.
+
+                startActivityForResult(intent, REQUEST_ENABLE_BT);
+                selectBluetoothDevice(); // 블루투스 디바이스 선택 함수 호출
+
+            }
+
+        }
     }
 
     @Override
@@ -338,9 +359,14 @@ public class MenuActivity extends AppCompatActivity {
                 @Override
 
                 public void onClick(DialogInterface dialog, int which) {
-
-                    // 해당 디바이스와 연결하는 함수 호출
-                    connectDevice(charSequences[which].toString());
+                    if(!charSequences[which].toString().equals("취소")){
+                        // 해당 디바이스와 연결하는 함수 호출
+                        connectDevice(charSequences[which].toString());
+                        conn =1;
+                    }
+                    else {
+                        conn =0;
+                    }
 
                 }
 

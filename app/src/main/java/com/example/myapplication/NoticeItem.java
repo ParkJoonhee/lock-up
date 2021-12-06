@@ -39,6 +39,6 @@ public class NoticeItem {
     }
 
     public String printContents(){
-        return String.format("날짜 : %s                         작성자 : %s%n내용%n%s",date,name,notice);
+        return String.format("날짜 : %s%n작성자 : %s%n내용%n%s",date,name,notice);
     }
 }
