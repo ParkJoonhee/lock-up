@@ -158,7 +158,7 @@ public class JoinActivity extends AppCompatActivity {
         });
     }
 
-    ;
+
     private void attemptJoin() {
         joinID2.setError(null);
         joinPw2.setError(null);

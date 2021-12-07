@@ -1,7 +1,5 @@
 package com.example.myapplication.Network;
 
-import com.example.myapplication.data.GeustlistData;
-import com.example.myapplication.data.GeustlistResponse;
 import com.example.myapplication.data.JoinData;
 import com.example.myapplication.data.JoinData2;
 import com.example.myapplication.data.JoinResponse;
